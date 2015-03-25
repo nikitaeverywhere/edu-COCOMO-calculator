@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>COCOMO calculator</title>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body onload="calculator = new Calculator()">
+    <h1>COCOMO calculator</h1>
+    <div>
+        <label>
+            Тип проекта:
+            <select id="ptSelect">
+                <option>Поширений</option>
+                <option>Напівнезалежний</option>
+                <option>Вбудований</option>
+            </select>
+        </label>
+        <label>
+            Об'єм програми:
+            <input id="psInput" type="number" min="1" max="1000000000" value="10000">
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h3 style="display: inline-block">PM = <span id="PM">0</span> (<sup>people</sup>/<sub>month</sub>)</h3>
+        <h3 style="display: inline-block">TM = <span id="TM">0</span> (time in months)</h3>
+    </div>
+    <div>
+        <h4>
+            <label><input id="use" type="checkbox"/>Застосувати проміжний рівень COCOMO</label>
+        </h4>
+        <div id="intCoc">
+            <table>
+                <thead>
+                <tr>
+                    <th rowspan="2">Атрибути вартості, CD<sub>k</sub></th>
+                    <th colspan="6">Рейтинг</th>
+                </tr>
+                <tr>
+                    <th>Дуже низький</th>
+                    <th>Низький</th>
+                    <th>Середній</th>
+                    <th>Високий</th>
+                    <th>Дуже високий</th>
+                    <th>Критичний</th>
+                </tr>
+                </thead>
+                <tbody id="tBody">
+                <tr>
+                    <th colspan="7">Характеристики продукта</th>
+                </tr>
+                <tr>
+                    <td>1. Вимоги до надійності ПЗ</td>
+                    <td><label><input type="radio" name="t1" value="0.75"/></label></td>
+                    <td><label><input type="radio" name="t1" value="0.88"/></label></td>
+                    <td><label><input type="radio" name="t1" value="1"/></label></td>
+                    <td><label><input type="radio" name="t1" value="1.15"/></label></td>
+                    <td><label><input type="radio" name="t1" value="1.40"/></label></td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>2. Розмір БД проекта</td>
+                    <td></td>
+                    <td><label><input type="radio" name="t2" value="0.94"/></label></td>
+                    <td><label><input type="radio" name="t2" value="1.00"/></label></td>
+                    <td><label><input type="radio" name="t2" value="1.08"/></label></td>
+                    <td><label><input type="radio" name="t2" value="1.16"/></label></td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>3. Складність продукта</td>
+                    <td><label><input type="radio" name="t3" value="0.70"/></label></td>
+                    <td><label><input type="radio" name="t3" value="0.85"/></label></td>
+                    <td><label><input type="radio" name="t3" value="1"/></label></td>
+                    <td><label><input type="radio" name="t3" value="1.15"/></label></td>
+                    <td><label><input type="radio" name="t3" value="1.30"/></label></td>
+                    <td><label><input type="radio" name="t3" value="1.65"/></label></td>
+                </tr>
+                <tr>
+                    <td colspan="7">Характеристики апаратного забезпечення</td>
+                </tr>
+                <tr>
+                    <td>4. Обмеження швидкодії виконання</td>
+                    <td></td>
+                    <td></td>
+                    <td><label><input type="radio" name="t4" value="1"/></label></td>
+                    <td><label><input type="radio" name="t4" value="1.11"/></label></td>
+                    <td><label><input type="radio" name="t4" value="1.30"/></label></td>
+                    <td><label><input type="radio" name="t4" value="1.66"/></label></td>
+                </tr>
+                <tr>
+                    <td>5. Обмеження пам'яті</td>
+                    <td></td>
+                    <td></td>
+                    <td><label><input type="radio" name="t5" value="1"/></label></td>
+                    <td><label><input type="radio" name="t5" value="1.06"/></label></td>
+                    <td><label><input type="radio" name="t5" value="1.21"/></label></td>
+                    <td><label><input type="radio" name="t5" value="1.56"/></label></td>
+                </tr>
+                <tr>
+                    <td>6. Нестабільність середовища віртуальної машини</td>
+                    <td></td>
+                    <td><label><input type="radio" name="t6" value="0.87"/></label></td>
+                    <td><label><input type="radio" name="t6" value="1"/></label></td>
+                    <td><label><input type="radio" name="t6" value="1.15"/></label></td>
+                    <td><label><input type="radio" name="t6" value="1.30"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7. Потребуємий час на відновлення</td>
+                    <td></td>
+                    <td><label><input type="radio" name="t7" value="0.87"/></label></td>
+                    <td><label><input type="radio" name="t7" value="1"/></label></td>
+                    <td><label><input type="radio" name="t7" value="1.07"/></label></td>
+                    <td><label><input type="radio" name="t7" value="1.15"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="7">Характеристики персонала</td>
+                </tr>
+                <tr>
+                    <td>8. Аналітичні здібності</td>
+                    <td><label><input type="radio" name="t8" value="1.46"/></label></td>
+                    <td><label><input type="radio" name="t8" value="1.19"/></label></td>
+                    <td><label><input type="radio" name="t8" value="1"/></label></td>
+                    <td><label><input type="radio" name="t8" value="0.86"/></label></td>
+                    <td><label><input type="radio" name="t8" value="0.71"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9. Досвід розробки</td>
+                    <td><label><input type="radio" name="t9" value="1.29"/></label></td>
+                    <td><label><input type="radio" name="t9" value="1.13"/></label></td>
+                    <td><label><input type="radio" name="t9" value="1"/></label></td>
+                    <td><label><input type="radio" name="t9" value="0.91"/></label></td>
+                    <td><label><input type="radio" name="t9" value="0.82"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10. Здібності до розробки ПЗ</td>
+                    <td><label><input type="radio" name="t10" value="1.42"/></label></td>
+                    <td><label><input type="radio" name="t10" value="1.17"/></label></td>
+                    <td><label><input type="radio" name="t10" value="1"/></label></td>
+                    <td><label><input type="radio" name="t10" value="0.86"/></label></td>
+                    <td><label><input type="radio" name="t10" value="0.70"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11. Досвід використання віртуальних машин</td>
+                    <td><label><input type="radio" name="t11" value="1.21"/></label></td>
+                    <td><label><input type="radio" name="t11" value="1.10"/></label></td>
+                    <td><label><input type="radio" name="t11" value="1"/></label></td>
+                    <td><label><input type="radio" name="t11" value="0.9"/></label></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12. Складність продукта</td>
+                    <td><label><input type="radio" name="t12" value="1.14"/></label></td>
+                    <td><label><input type="radio" name="t12" value="1.07"/></label></td>
+                    <td><label><input type="radio" name="t12" value="1"/></label></td>
+                    <td><label><input type="radio" name="t12" value="0.95"/></label></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="7">Характеристики проекта</td>
+                </tr>
+                <tr>
+                    <td>13. Застосування методів розробки ПЗ</td>
+                    <td><label><input type="radio" name="t13" value="1.24"/></label></td>
+                    <td><label><input type="radio" name="t13" value="1.10"/></label></td>
+                    <td><label><input type="radio" name="t13" value="1"/></label></td>
+                    <td><label><input type="radio" name="t13" value="0.91"/></label></td>
+                    <td><label><input type="radio" name="t13" value="0.82"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14. Використання інструментарію розробки ПЗ</td>
+                    <td><label><input type="radio" name="t14" value="1.24"/></label></td>
+                    <td><label><input type="radio" name="t14" value="1.10"/></label></td>
+                    <td><label><input type="radio" name="t14" value="1"/></label></td>
+                    <td><label><input type="radio" name="t14" value="0.91"/></label></td>
+                    <td><label><input type="radio" name="t14" value="0.83"/></label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15. Вимоги дотримання термінів розробки</td>
+                    <td><label><input type="radio" name="t15" value="1.23"/></label></td>
+                    <td><label><input type="radio" name="t15" value="1.08"/></label></td>
+                    <td><label><input type="radio" name="t15" value="1"/></label></td>
+                    <td><label><input type="radio" name="t15" value="1.04"/></label></td>
+                    <td><label><input type="radio" name="t15" value="1.10"/></label></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="intCocOver"></div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>

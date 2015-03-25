@@ -1,0 +1,47 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 1em 3em 3em 3em;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: .5em;
+}
+
+td {
+    text-align: center;
+    -webkit-transition: all .5s ease;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+td > label {
+    display: block;
+    cursor: pointer;
+}
+
+td:hover:not(:first-child) {
+    background: #fff379;
+}
+
+input[type=radio] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+#intCoc {
+    position: relative;
+}
+
+.intCocOver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+}
